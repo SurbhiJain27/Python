@@ -1,0 +1,94 @@
+1) Comprehension list syntax in Python:
+	[expression for item in list]
+	
+	Eg: number_list = [ x for x in range(20) if x % 2 == 0]
+		print(number_list)
+		
+2) Lambda expression syntax in python:
+	lambda arguments : expression
+	
+	Eg: x = lambda a : a + 10
+		print(x(5))  #output 15
+
+3) Map syntax in python:
+	map functions expect a function object and any number of iterables, such as list, dictionary, etc. 
+	It executes the function_object for each element in the sequence and returns a list of the elements modified by the function object.
+	map(function_object, iterable1, iterable2,...)
+	
+	Eg: def multiply2(x):
+		return x * 2
+		map(multiply2, [1, 2, 3, 4])  # Output [2, 4, 6, 8]
+		
+4) Filter syntax in Python:
+	filter(function_object, iterable)
+	The filter function expects two arguments: function_object and an iterable. 
+	function_object returns a boolean value and is called for each element of the iterable. 
+	Filter returns only those elements for which the function_object returns true.
+	Like the map function, the filter function also returns a list of elements. Unlike map, the filter function can only have one iterable as input.
+	
+	Eg: a = [1, 2, 3, 4, 5, 6]
+		filter(lambda x : x % 2 == 0, a) # Output: [2, 4, 6]
+		
+5) Iteration Protocol:
+	The built-in function iter takes an iterable object and returns an iterator.
+	
+	Eg: x = iter([1, 2, 3])
+		>>> x
+		<listiterator object at 0x1004ca850>
+		>>> next(x)
+		1
+		>>> next(x)
+		2
+		>>> next(x)
+		3
+		>>> next(x)
+		Traceback (most recent call last):
+		  File "<stdin>", line 1, in <module>
+		StopIteration
+		
+6) Generator Protocol:
+	A python generator function lends us a sequence of values to python iterate on. The following is an example of generators in python.
+
+	>>> def even(x):
+		   while(x!=0):
+			   if x%2==0:
+					 yield x
+				  x-=1
+	>>> for i in even(8):
+			print(i)   
+			
+		#output: 8 6 4 2
+		
+7) Itertools:
+	built-in Python module for working with iterable data sets
+	
+	import itertools
+ 
+	list1 = [1, 2, 3, 'a', 'b', 'c']
+	list2 = [101, 102, 103, 'X', 'Y']
+ 
+	(i) chain() - takes several sequences and chains them together
+			chain(list1, list2)
+ 
+		list(chain(list1, list2)) #result is [1, 2, 3, 'a', 'b', 'c', 101, 102, 103, 'X', 'Y']
+ 
+	(ii) count() - returns an iterator that generates consecutive integers until you stop it, otherwise it will go on forever
+		for i in count(10, 2.5):
+			if i <= 50:
+				print(i)
+			else:
+				break   #result is printing the numbers between 10 and 50 inclusively, with a step of 2.5
+        
+	(iii) cycle() - returns an iterator that simply repeats the value given as argument infinitely; you have to find a way to break out of the infinite loop
+			a = range(11, 16)
+ 
+			for i in cycle(a):
+				print(i) #use Ctrl+C to break out of the infinite loop
+    
+	(iv) filterfalse() - returns the elements for which the function you give as argument returns False
+			list(filterfalse(lambda x: x < 5, [1, 2, 3, 4, 5, 6, 7])) #in Python 2 the result is [5, 6, 7]; 
+			in Python 3 there is no ifilter() like in Python 2, just filter() and filterfalse()
+ 
+	(v) islice() - performs slicing; we can specify a starting point of the slice, an end point and a step
+			list(islice(range(10), 2, 9, 2)) #result is [2, 4, 6, 8]
+	
